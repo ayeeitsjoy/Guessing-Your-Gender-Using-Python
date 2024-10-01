@@ -1,0 +1,32 @@
+""" I used a tree module from sklearn in my program that will create a decision tree classifier 
+that learns from my fake dataset, (Height, Weight, and Shoe Size) to predict gender (Male or Female). 
+After learning the dataset, it can take new data from user input and predict gender based on patterns learned
+*this is an extended version I implemented from Siraj Raval 'Introduction- Learn Python for Data Science #1' 
+video on Youtube. 
+Thank you
+Joy Barnes
+"""
+
+from sklearn import tree
+#[height, weight, shoe size]
+
+X = [[181, 80, 42], [162, 70, 38], [171, 83, 43], [154, 79, 37], [175, 82, 44], 
+     [180, 87, 43], [165, 73, 39], [170, 95, 43], [190, 90, 44],[165, 70, 37],
+     [168, 77, 39], [181, 85, 43]]
+
+Y = ['Male', 'Female', 'Male', 'Female', 'Male', 
+    'Male', 'Female', 'Male', 'Male', "Female", 
+    'Female', 'Male' ]
+
+clf = tree.DecisionTreeClassifier()
+
+clf = clf.fit(X,Y)
+
+# User input their data using commas -> 123, 45, 67
+user_state = input("What is your height, weight, and shoe size?: ")
+# This will convert the input into a list of integers
+user_state_list = list(map(int, user_state.split(',')))
+# Will make a prediction based on input
+prediction = clf.predict([user_state_list])
+
+print(f" Our guess is : {prediction[0]}")
